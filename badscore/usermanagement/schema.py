@@ -19,6 +19,7 @@ class UserType(DjangoObjectType):
 
 class Query:
     users = graphene.List(UserType, role=graphene.String(required=False))
+    corporate_admins = graphene.List(UserType, role=graphene.String(required=False))
     me = graphene.Field(UserType)
 
     @staticmethod
@@ -26,6 +27,10 @@ class Query:
         # if role != 'ALL':
         #     return User.objects.filter(role=role)
         return User.objects.all()
+
+    @staticmethod
+    def resolve_corporate_admins(info, role):
+        return User.objects.filter(role=2)
 
     @login_required
     def resolve_me(self, info):

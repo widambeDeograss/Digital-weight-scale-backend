@@ -34,6 +34,8 @@ class CorporateSocietyMutation(graphene.Mutation):
 
         try:
             cop_admin = User.objects.get(email=admin)
+            cop_admin.role = 2
+            cop_admin.save()
             print(cop_admin)
             corporate_society = CorporateSociety(name=name, admin=cop_admin, region=region, district=district)
             corporate_society.save()
