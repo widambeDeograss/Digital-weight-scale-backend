@@ -30,7 +30,7 @@ class Farmers(models.Model):
     REQUIRED_FIELDS = ['farmer', 'corporate_society']
 
     def __str__(self):
-        return self.farmer
+        return self.farmer.full_name
 
     class Meta:
         db_table = 'Farmer'
@@ -69,13 +69,14 @@ class CropSales(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     cropSold = models.ForeignKey(CorporateCrops, on_delete=models.CASCADE)
     farmer = models.ForeignKey(Farmers, on_delete=models.CASCADE)
+    saledate = models.DateTimeField(auto_now_add=True)
     quantityInKg = models.DecimalField(max_digits=10, decimal_places=1)
     totalPay = models.DecimalField(max_digits=17, decimal_places=1)
 
     REQUIRED_FIELDS = ['cropSold', 'quantityInKg', 'totalPay']
 
     def __str__(self):
-        return self.cropSold
+        return self.cropSold.crop.name
 
     class Meta:
         db_table = 'CropSales'
