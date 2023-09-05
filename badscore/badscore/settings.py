@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-rhv5tw!w@o1a_#gof*ls9s^7r77v96#rmu*=*c(2_&4@@ls&v(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'graphql_auth',
     'django_filters',
     "corsheaders",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
